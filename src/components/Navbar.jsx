@@ -10,7 +10,7 @@ const redHatDisplay = Red_Hat_Display({
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between h-[78px] px-6 lg:px-[124px] bg-white w-full border-b border-gray-100">
+    <nav className="sticky top-0 z-50 flex items-center justify-between h-[78px] px-6 lg:px-[124px] bg-white/95 backdrop-blur border-b border-[#EFF0F6] shadow-[0_8px_24px_rgba(0,0,0,0.03)]">
       <div className="flex items-center gap-12">
         <Link href="/" className="flex items-center gap-2">
           <Image src={logo} alt="QuickHire Logo" width={32} height={32} />
