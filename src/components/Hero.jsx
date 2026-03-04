@@ -1,9 +1,29 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import scratches from "../../public/ventor_scratchs.png";
 import pattern from "../../public/hero_background_pattern.png";
 import HeroPerson from "../../public/hero_person.png";
 
 export default function Hero() {
+  const router = useRouter();
+  const [keyword, setKeyword] = useState("");
+  const [location, setLocation] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    // Build the URL query parameters
+    const query = new URLSearchParams();
+    if (keyword) query.append("search", keyword);
+    if (location) query.append("location", location);
+
+    // Send the user to the jobs page with their search filters
+    router.push(`/jobs?${query.toString()}`);
+  };
+
   return (
     <section className="bg-[#F8F8FD] w-full overflow-hidden">
       <div className="relative mx-auto max-w-[1440px] h-auto lg:h-[794px] flex flex-col lg:block">
@@ -50,7 +70,10 @@ export default function Hero() {
             Great platform for the job seeker that searching for new career
             heights and passionate about startups.
           </p>
-          <div
+
+          {/* Swapped to a <form> and added onSubmit handler */}
+          <form
+            onSubmit={handleSearch}
             className="bg-white p-[16px] flex flex-col lg:flex-row items-center w-full max-w-[852px] lg:w-[852px] lg:h-[89px]"
             style={{
               boxShadow:
@@ -74,6 +97,8 @@ export default function Hero() {
               <input
                 type="text"
                 placeholder="Job title or keyword"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
                 className="w-full outline-none text-[#25324B] placeholder:text-[#A8ADB7] text-[16px] font-['Epilogue']"
               />
             </div>
@@ -91,10 +116,15 @@ export default function Hero() {
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
-              <select className="w-full outline-none text-[#25324B] appearance-none cursor-pointer bg-transparent text-[16px] font-['Epilogue']">
-                <option>Florence, Italy</option>
-                <option>Dhaka, Bangladesh</option>
-                <option>New York, USA</option>
+              <select
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="w-full outline-none text-[#25324B] appearance-none cursor-pointer bg-transparent text-[16px] font-['Epilogue']"
+              >
+                <option value="">Any Location</option>
+                <option value="Florence, Italy">Florence, Italy</option>
+                <option value="Dhaka, Bangladesh">Dhaka, Bangladesh</option>
+                <option value="New York, USA">New York, USA</option>
               </select>
               <svg
                 width="20"
@@ -110,10 +140,13 @@ export default function Hero() {
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </div>
-            <button className="bg-[#4640DE] hover:opacity-90 transition-opacity text-white font-medium text-[16px] px-[32px] py-[14px] w-full lg:w-auto mt-4 lg:mt-0 h-full font-['Epilogue']">
+            <button
+              type="submit"
+              className="bg-[#4640DE] hover:opacity-90 transition-opacity text-white font-medium text-[16px] px-[32px] py-[14px] w-full lg:w-auto mt-4 lg:mt-0 h-full font-['Epilogue']"
+            >
               Search my job
             </button>
-          </div>
+          </form>
           <div className="mt-6 text-[16px] text-[#515B6F] leading-[1.6] font-['Epilogue']">
             <span className="font-medium text-[#25324B]">Popular : </span> UI
             Designer, UX Researcher, Android, Admin
