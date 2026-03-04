@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import CategoryGrid from "@/components/CategoryGrid";
 import FeaturedJobs from "@/components/FeaturedJobs";
 import LatestJobs from "@/components/LatestJobs";
+import CallToAction from "@/components/CallToAction";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Hero />
         <Companies />
         <CategoryGrid />
+        <CallToAction />
         <FeaturedJobs />
         <LatestJobs />
       </main>
