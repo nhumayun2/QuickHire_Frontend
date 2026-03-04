@@ -1,3 +1,7 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 const categories = [
   { name: "Design", count: "235 jobs available", icon: "🛠" },
   { name: "Sales", count: "756 jobs available", icon: "📈" },
@@ -10,6 +14,18 @@ const categories = [
 ];
 
 export default function CategoryGrid() {
+  const router = useRouter();
+
+  const handleCategoryClick = (categoryName) => {
+    // Navigate to the jobs page with the category filter
+    router.push(`/jobs?category=${encodeURIComponent(categoryName)}`);
+  };
+
+  const handleShowAll = () => {
+    // Navigate to the jobs page with no filters
+    router.push("/jobs");
+  };
+
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-[1120px] px-6 lg:px-0 py-16">
@@ -17,7 +33,10 @@ export default function CategoryGrid() {
           <h2 className="text-[28px] lg:text-[32px] font-semibold text-[#25324B]">
             Explore by <span className="text-[#26A4FF]">category</span>
           </h2>
-          <button className="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-[#4640DE]">
+          <button
+            onClick={handleShowAll}
+            className="hidden lg:inline-flex items-center gap-2 text-sm font-medium text-[#4640DE] hover:opacity-80 transition-opacity"
+          >
             Show all jobs
             <span aria-hidden>→</span>
           </button>
@@ -27,16 +46,19 @@ export default function CategoryGrid() {
           {categories.map((category) => (
             <button
               key={category.name}
-              className={`flex flex-col items-start justify-between border rounded-[12px] px-6 py-6 text-left transition-shadow ${
+              onClick={() => handleCategoryClick(category.name)}
+              className={`flex flex-col items-start justify-between border rounded-[12px] px-6 py-6 text-left transition-all hover:-translate-y-1 ${
                 category.active
                   ? "bg-[#4640DE] text-white border-transparent shadow-[0_24px_80px_rgba(70,64,222,0.35)]"
-                  : "bg-white text-[#25324B] border-[#E6E8F0] hover:shadow-[0_24px_80px_rgba(0,0,0,0.05)]"
+                  : "bg-white text-[#25324B] border-[#E6E8F0] hover:shadow-[0_24px_80px_rgba(0,0,0,0.05)] hover:border-[#4640DE]"
               }`}
             >
               <div className="w-10 h-10 rounded-[12px] flex items-center justify-center text-lg bg-[#F8F8FD] mb-6">
                 <span
                   className={
-                    category.active ? "text-white text-xl" : "text-[#4640DE] text-xl"
+                    category.active
+                      ? "text-white text-xl"
+                      : "text-[#4640DE] text-xl"
                   }
                 >
                   {category.icon}
@@ -63,7 +85,10 @@ export default function CategoryGrid() {
           ))}
         </div>
 
-        <button className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#4640DE] lg:hidden">
+        <button
+          onClick={handleShowAll}
+          className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#4640DE] lg:hidden hover:opacity-80 transition-opacity"
+        >
           Show all jobs
           <span aria-hidden>→</span>
         </button>
@@ -71,4 +96,3 @@ export default function CategoryGrid() {
     </section>
   );
 }
-

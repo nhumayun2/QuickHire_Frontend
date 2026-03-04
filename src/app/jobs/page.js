@@ -9,6 +9,7 @@ function JobsList() {
   const searchParams = useSearchParams();
   const search = searchParams.get("search") || "";
   const location = searchParams.get("location") || "";
+  const category = searchParams.get("category") || "";
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,7 @@ function JobsList() {
         const query = new URLSearchParams();
         if (search) query.append("search", search);
         if (location) query.append("location", location);
+        if (category) query.append("category", category);
 
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/jobs?${query.toString()}`,
@@ -36,7 +38,7 @@ function JobsList() {
     };
 
     fetchFilteredJobs();
-  }, [search, location]);
+  }, [search, location, category]);
 
   return (
     <div className="mx-auto max-w-[1120px] px-6 lg:px-0 py-16 min-h-[50vh]">
@@ -44,10 +46,11 @@ function JobsList() {
         <h1 className="text-[32px] font-semibold text-[#25324B]">
           Find your <span className="text-[#26A4FF]">dream job</span>
         </h1>
-        {(search || location) && (
+        {(search || location || category) && (
           <p className="text-[#515B6F] mt-2 font-medium">
-            Showing results for {search ? `"${search}"` : "all jobs"}{" "}
-            {location ? `in ${location}` : ""}
+            Showing results {search ? `for "${search}"` : ""}{" "}
+            {location ? `in ${location}` : ""}{" "}
+            {category ? `in ${category} category` : ""}
           </p>
         )}
       </div>
