@@ -23,8 +23,8 @@ const companies = [
 
 export default function Companies() {
   return (
-    <section className="w-full bg-white flex justify-center">
-      <div className="w-[1440px] h-[197px] px-[124px] py-[48px] flex flex-col justify-center items-start gap-[32px] overflow-hidden">
+    <section className="w-full bg-white border-b border-[#E6E8F0] flex justify-center">
+      <div className="w-[1440px] h-[197px] pt-[48px] pb-[48px] pl-[124px] pr-[122px] flex flex-col justify-center items-start gap-[32px] overflow-hidden">
         <p
           className={`${epilogue.className} text-[18px] leading-[1.6] text-[#7C8493] font-normal whitespace-nowrap`}
         >

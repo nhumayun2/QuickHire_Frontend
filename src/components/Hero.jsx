@@ -27,7 +27,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full h-[794px] bg-[#F8F9FF] flex justify-center overflow-hidden">
+    <section className="relative w-full h-screen bg-[#F8F9FF] flex justify-center overflow-hidden">
       <div className="absolute top-0 right-0 w-[65%] h-full pointer-events-none z-0">
         <Image
           src={herobg}
