@@ -1,9 +1,17 @@
+"use client";
+
+import { Epilogue } from "next/font/google";
 import Image from "next/image";
 import vodafoneLogo from "../../public/vodafone-2017-logo.png";
 import intelLogo from "../../public/intel-3.png";
 import teslaLogo from "../../public/tesla-9 1.png";
 import amdLogo from "../../public/amd-logo-1.png";
 import talkitLogo from "../../public/talkit 1.png";
+
+const epilogue = Epilogue({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const companies = [
   { id: "vodafone", src: vodafoneLogo, alt: "Vodafone" },
@@ -15,22 +23,45 @@ const companies = [
 
 export default function Companies() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto max-w-[1120px] px-6 lg:px-0 py-12 lg:py-16 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-        <p className="text-sm lg:text-base text-[#7C8493] font-medium">
+    <section className="bg-white border-b border-[#E6E8F0]">
+      <div className="mx-auto max-w-[1440px] h-[197px] px-6 lg:px-[124px] py-10 flex flex-col justify-center items-start gap-8 overflow-hidden">
+        <p
+          className={`${epilogue.className} text-[18px] leading-[1.6] text-[#7C8493] font-normal whitespace-nowrap`}
+        >
           Companies we helped grow
         </p>
-        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-6 lg:gap-x-14 w-full lg:w-auto">
-          {companies.map((company) => (
-            <Image
-              key={company.id}
-              src={company.src}
-              alt={company.alt}
-              className="h-6 lg:h-8 w-auto opacity-70"
-            />
-          ))}
+        <div className="relative w-full overflow-hidden pointer-events-none">
+          <div className="flex items-center gap-16 animate-infinite-scroll-right min-w-max">
+            {[...companies, ...companies, ...companies].map(
+              (company, index) => (
+                <div key={`${company.id}-${index}`} className="flex-shrink-0">
+                  <Image
+                    src={company.src}
+                    alt={company.alt}
+                    className="h-7 lg:h-8 w-auto grayscale opacity-40 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+              ),
+            )}
+          </div>
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes scrollRight {
+          0% {
+            transform: translateX(-33.33%);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        .animate-infinite-scroll-right {
+          animation: scrollRight 30s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }
