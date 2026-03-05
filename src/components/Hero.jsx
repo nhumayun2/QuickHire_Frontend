@@ -21,8 +21,9 @@ export default function Hero() {
   const handleSearch = (e) => {
     e.preventDefault();
     const query = new URLSearchParams();
-    if (search) query.append("search", search);
-    if (location) query.append("location", location);
+
+    if (search.trim()) query.append("search", search.trim());
+    if (location.trim()) query.append("location", location.trim());
     router.push(`/jobs?${query.toString()}`);
   };
 

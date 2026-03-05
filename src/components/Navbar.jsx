@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+// Fixed: Link must come from next/link
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
@@ -24,7 +25,6 @@ export default function Navbar() {
       const token = localStorage.getItem("token");
       setIsLoggedIn(!!token);
     }, 0);
-
     return () => clearTimeout(timer);
   }, [pathname]);
 
@@ -35,7 +35,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="absolute top-0 left-0 w-full h-[78px] z-50 flex justify-center bg-transparent">
+    <nav className="absolute top-0 left-0 w-full h-[78px] z-50 flex justify-center bg-white border-b border-[#E6E8F0]">
       <div className="w-[1440px] px-[124px] flex items-center justify-between">
         <div className="flex items-center gap-12">
           <Link href="/" className="flex items-center gap-2">
@@ -47,56 +47,73 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-4 text-base font-medium text-[#515B6F]">
+          <div className="hidden md:flex items-center gap-8 text-base font-medium text-[#515B6F]">
             <Link
               href="/jobs"
-              className="hover:text-[#4640DE] transition-colors"
+              className={`hover:text-[#4640DE] transition-colors py-6 ${pathname === "/jobs" ? "text-[#4640DE] font-bold border-b-2 border-[#4640DE]" : ""}`}
             >
               Find Jobs
             </Link>
             <Link
               href="/companies"
-              className="hover:text-[#4640DE] transition-colors"
+              className={`hover:text-[#4640DE] transition-colors py-6 ${pathname === "/companies" ? "text-[#4640DE] font-bold border-b-2 border-[#4640DE]" : ""}`}
             >
               Browse Companies
             </Link>
+
+            {isLoggedIn && (
+              <>
+                <Link
+                  href="/admin/applications"
+                  className={`hover:text-[#4640DE] transition-colors py-6 ${pathname.includes("applications") ? "text-[#4640DE] font-bold border-b-2 border-[#4640DE]" : ""}`}
+                >
+                  Applications
+                </Link>
+                <Link
+                  href="/admin/jobs"
+                  className={`hover:text-[#4640DE] transition-colors py-6 ${pathname.includes("manage") ? "text-[#4640DE] font-bold border-b-2 border-[#4640DE]" : ""}`}
+                >
+                  Manage Jobs
+                </Link>
+              </>
+            )}
           </div>
         </div>
 
-        <div className="hidden md:flex items-center gap-2 font-medium">
+        <div className="hidden md:flex items-center gap-4">
           {mounted &&
             (isLoggedIn ? (
-              <>
+              <div className="flex items-center gap-3">
                 <Link
                   href="/admin"
-                  className="text-[#4640DE] hover:opacity-80 px-6 py-3 font-bold"
+                  className="text-[#4640DE] px-6 py-3 font-bold hover:bg-blue-50 rounded-lg transition-all"
                 >
                   Dashboard
                 </Link>
-                <div className="h-6 w-[1px] bg-gray-300"></div>
+                <div className="h-6 w-[1px] bg-[#D6DDEB]"></div>
                 <button
                   onClick={handleLogout}
-                  className="bg-red-50 text-red-600 px-6 py-3 font-bold rounded-lg border border-red-100"
+                  className="bg-[#FF4747]/10 text-[#FF4747] px-6 py-3 font-bold rounded-lg border border-[#FF4747]/20 hover:bg-[#FF4747] hover:text-white transition-all"
                 >
                   Logout
                 </button>
-              </>
+              </div>
             ) : (
-              <>
+              <div className="flex items-center gap-3">
                 <Link
                   href="/login"
-                  className="text-[#4640DE] hover:opacity-80 px-6 py-3 font-bold"
+                  className="text-[#4640DE] px-6 py-3 font-bold hover:bg-blue-50 rounded-lg transition-all"
                 >
                   Login
                 </Link>
-                <div className="h-6 w-[1px] bg-gray-300"></div>
+                <div className="h-6 w-[1px] bg-[#D6DDEB]"></div>
                 <Link
                   href="/register"
-                  className="bg-[#4640DE] text-white px-6 py-3 hover:opacity-90 font-bold rounded-lg"
+                  className="bg-[#4640DE] text-white px-6 py-3 font-bold rounded-lg hover:shadow-lg transition-all"
                 >
                   Sign Up
                 </Link>
-              </>
+              </div>
             ))}
         </div>
       </div>
