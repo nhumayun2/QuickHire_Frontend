@@ -5,6 +5,10 @@ import Image from "next/image";
 import { Epilogue } from "next/font/google";
 import localFont from "next/font/local";
 
+import rightTop from "../../public/latestjobshapes/rightTop.png";
+import rightMiddle from "../../public/latestjobshapes/rightMiddle.png";
+import bottomShape from "../../public/latestjobshapes/bottom.png";
+
 const epilogue = Epilogue({
   subsets: ["latin"],
   weight: ["400", "600"],
@@ -18,6 +22,7 @@ const clashDisplay = localFont({
 function Tag({ children, variant = "default" }) {
   const base =
     "px-4 py-1.5 rounded-full text-[14px] font-semibold border inline-flex items-center justify-center";
+
   const variants = {
     default: "bg-[#56CDAD]/10 text-[#56CDAD] border-transparent",
     outline: "bg-white text-[#FFB836] border-[#FFB836]",
@@ -42,13 +47,65 @@ export default function LatestJobs() {
         setLoading(false);
       }
     };
+
     fetchJobs();
   }, []);
 
   return (
-    <section className="w-full h-[877px] bg-white flex justify-center overflow-hidden">
-      <div className="w-[1440px] h-full px-[124px] py-16 flex flex-col">
-        <div className="flex items-center justify-between mb-[48px]">
+    <section className="relative w-full h-[877px] bg-white flex justify-center overflow-hidden">
+      <div
+        className="absolute inset-0 bg-[#F8F8FD] z-0"
+        style={{
+          clipPath: "polygon(140px 0, 100% 0, 100% 100%, 0 100%, 0 140px)",
+        }}
+      />
+
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1440px] h-full z-10 pointer-events-none">
+        <div
+          className="absolute"
+          style={{
+            width: "192.20022774311641px",
+            height: "416.4660991159406px",
+            top: "-298.25px",
+            right: "106.44px",
+            opacity: 0.6,
+            transform: "rotate(-64deg)",
+          }}
+        >
+          <Image src={rightTop} alt="" fill className="object-contain" />
+        </div>
+
+        <div
+          className="absolute"
+          style={{
+            width: "319.77695020433987px",
+            height: "778.5056229831226px",
+            top: "220px",
+            right: "-17.95px",
+            opacity: 1,
+            transform: "rotate(-64deg)",
+          }}
+        >
+          <Image src={rightMiddle} alt="" fill className="object-contain" />
+        </div>
+
+        <div
+          className="absolute"
+          style={{
+            width: "283.38406654132706px",
+            height: "716.2515940431733px",
+            top: "617px",
+            right: "-261px",
+            opacity: 1,
+            transform: "rotate(-64deg)",
+          }}
+        >
+          <Image src={bottomShape} alt="" fill className="object-contain" />
+        </div>
+      </div>
+
+      <div className="relative z-20 w-[1440px] h-full px-[124px] py-16 flex flex-col">
+        <div className="flex items-center justify-between mb-[48px] mt-10">
           <h2
             className={`${clashDisplay.className} text-[48px] font-semibold text-[#25324B] leading-[1.1]`}
           >
@@ -80,7 +137,7 @@ export default function LatestJobs() {
                   style={{ width: "580px", height: "149px" }}
                   className="flex items-center border border-[#D6DDEB] bg-white pt-[24px] pb-[24px] px-[40px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-all group"
                 >
-                  <div className="mr-[24px] flex-shrink-0 w-12 h-12 bg-gray-50 flex items-center justify-center">
+                  <div className="mr-[24px] flex-shrink-0 w-12 h-12 bg-gray-100 flex items-center justify-center">
                     <svg
                       width="24"
                       height="24"
@@ -89,15 +146,8 @@ export default function LatestJobs() {
                       stroke="#7C8493"
                       strokeWidth="2"
                     >
-                      <rect
-                        x="2"
-                        y="7"
-                        width="20"
-                        height="14"
-                        rx="2"
-                        ry="2"
-                      ></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
                     </svg>
                   </div>
 
