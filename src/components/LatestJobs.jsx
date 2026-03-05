@@ -66,10 +66,10 @@ export default function LatestJobs() {
           style={{
             width: "192.20022774311641px",
             height: "416.4660991159406px",
-            top: "-298.25px",
-            right: "106.44px",
+            top: "-160.25px",
+            right: "135.44px",
+            scale: "2",
             opacity: 0.6,
-            transform: "rotate(-64deg)",
           }}
         >
           <Image src={rightTop} alt="" fill className="object-contain" />
@@ -80,10 +80,10 @@ export default function LatestJobs() {
           style={{
             width: "319.77695020433987px",
             height: "778.5056229831226px",
-            top: "220px",
-            right: "-17.95px",
+            top: "80px",
+            right: "-150.95px",
             opacity: 1,
-            transform: "rotate(-64deg)",
+            scale: "1.5",
           }}
         >
           <Image src={rightMiddle} alt="" fill className="object-contain" />
@@ -94,10 +94,10 @@ export default function LatestJobs() {
           style={{
             width: "283.38406654132706px",
             height: "716.2515940431733px",
-            top: "617px",
-            right: "-261px",
+            top: "500px",
+            right: "320px",
             opacity: 1,
-            transform: "rotate(-64deg)",
+            scale: "2",
           }}
         >
           <Image src={bottomShape} alt="" fill className="object-contain" />
