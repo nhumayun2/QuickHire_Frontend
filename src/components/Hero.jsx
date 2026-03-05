@@ -27,7 +27,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] bg-[#F8F9FF] overflow-hidden">
+    <section className="relative w-full h-[794px] bg-[#F8F9FF] flex justify-center overflow-hidden">
       <div className="absolute top-0 right-0 w-[65%] h-full pointer-events-none z-0">
         <Image
           src={herobg}
@@ -37,15 +37,17 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-[1440px] h-full flex flex-col lg:flex-row items-center justify-between px-6 lg:px-[124px]">
-        <div className="relative z-20 w-full lg:w-[55%] pt-20 lg:pt-0">
+      <div className="relative z-10 w-[1440px] h-full px-[124px] flex items-center justify-between">
+        <div className="relative z-20 w-[55%]">
           <h1
-            className={`${clashDisplay.className} text-[52px] lg:text-[72px] font-bold text-[#25324B] leading-[1.1] tracking-[-0.02em]`}
+            className={`${clashDisplay.className} text-[72px] font-bold text-[#25324B] leading-[1.1] tracking-[-0.02em]`}
           >
             Discover <br /> more than <br />
             <span className="relative inline-block text-[#26A4FF]">
               5000+ Jobs
-              <Image src={ScratchImage} alt="Scratch" />
+              <div className="absolute -bottom-4 left-0 w-full">
+                <Image src={ScratchImage} alt="Scratch" />
+              </div>
             </span>
           </h1>
 
@@ -54,13 +56,9 @@ export default function Hero() {
             heights and passionate about startups.
           </p>
 
-          {/* Search Bar Container */}
-          <div className="relative mt-10 bg-white p-3 rounded-[3px] shadow-[0_24px_80px_rgba(0,0,0,0.08)] border border-[#E6E8F0] w-full lg:w-[830px]">
-            <form
-              onSubmit={handleSearch}
-              className="flex flex-col sm:flex-row items-center gap-2"
-            >
-              <div className="flex-1 flex items-center gap-3 px-4 py-3 border-b sm:border-b-0 sm:border-r border-[#D6DDEB]">
+          <div className="relative mt-10 bg-white p-2 rounded-[3px] shadow-[0_24px_80px_rgba(0,0,0,0.08)] border border-[#E6E8F0] w-[830px]">
+            <form onSubmit={handleSearch} className="flex items-center">
+              <div className="flex-1 flex items-center gap-3 px-4 border-r border-[#D6DDEB]">
                 <svg
                   width="24"
                   height="24"
@@ -75,13 +73,13 @@ export default function Hero() {
                 <input
                   type="text"
                   placeholder="Job title or keyword"
-                  className="w-full p-3 focus:outline-none border-b border-[#D6DDEB] text-[#25324B] placeholder:text-[#A8ADB7] font-medium"
+                  className="w-full py-3 focus:outline-none text-[#25324B] placeholder:text-[#A8ADB7] font-medium"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
 
-              <div className="flex-1 flex items-center gap-3 px-4 py-3">
+              <div className="flex-1 flex items-center gap-3 px-4">
                 <svg
                   width="24"
                   height="24"
@@ -96,7 +94,7 @@ export default function Hero() {
                 <input
                   type="text"
                   placeholder="Any Location"
-                  className="w-full p-3 focus:outline-none border-b border-[#D6DDEB] text-[#25324B] placeholder:text-[#A8ADB7] font-medium"
+                  className="w-full py-3 focus:outline-none text-[#25324B] placeholder:text-[#A8ADB7] font-medium"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
@@ -104,7 +102,7 @@ export default function Hero() {
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-10 py-4 bg-[#4640DE] text-white font-bold rounded-[8px] hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="px-10 py-4 bg-[#4640DE] text-white font-bold rounded-[8px] hover:opacity-90 transition-opacity whitespace-nowrap"
               >
                 Search my job
               </button>
@@ -119,9 +117,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 3. Right Side (Middle Layer: z-10) */}
-        <div className="absolute right-0 bottom-0 w-full lg:w-[50%] h-full flex items-end justify-end z-10 pointer-events-none">
-          <div className="relative w-full h-[85%] lg:h-[95%]">
+        <div className="absolute right-0 bottom-0 w-[50%] h-full flex items-end justify-end z-10 pointer-events-none">
+          <div className="relative w-full h-[95%]">
             <Image
               src={HeroPerson}
               alt="Job seeker pointing"

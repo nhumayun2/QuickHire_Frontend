@@ -5,13 +5,11 @@ import Image from "next/image";
 import { Epilogue } from "next/font/google";
 import localFont from "next/font/local";
 
-// Configure Epilogue for body text and buttons
 const epilogue = Epilogue({
   subsets: ["latin"],
   weight: ["400", "600"],
 });
 
-// Configure Clash Display for the heading
 const clashDisplay = localFont({
   src: "../../public/fonts/ClashDisplay-Bold.otf",
   display: "swap",
@@ -21,8 +19,8 @@ function Tag({ children, variant = "default" }) {
   const base =
     "px-4 py-1.5 rounded-full text-[14px] font-semibold border inline-flex items-center justify-center";
   const variants = {
-    default: "bg-[#56CDAD]/10 text-[#56CDAD] border-transparent", // Matching Figma's soft green for categories
-    outline: "bg-white text-[#FFB836] border-[#FFB836]", // Matching Figma's orange for job types
+    default: "bg-[#56CDAD]/10 text-[#56CDAD] border-transparent",
+    outline: "bg-white text-[#FFB836] border-[#FFB836]",
   };
 
   return <span className={`${base} ${variants[variant]}`}>{children}</span>;
@@ -37,7 +35,6 @@ export default function LatestJobs() {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs`);
         const data = await response.json();
-        // Show newest first and limit to 8
         setJobs(data.slice().reverse().slice(0, 8));
         setLoading(false);
       } catch (error) {
@@ -49,97 +46,93 @@ export default function LatestJobs() {
   }, []);
 
   return (
-    <section className="mx-auto w-[1440px] h-[877px] bg-white overflow-hidden py-16 px-[124px]">
-      {/* Header Row */}
-      <div className="flex items-center justify-between mb-[48px]">
-        <h2
-          className={`${clashDisplay.className} text-[48px] font-semibold text-[#25324B] leading-[1.1]`}
-        >
-          Latest <span className="text-[#26A4FF]">jobs open</span>
-        </h2>
+    <section className="w-full h-[877px] bg-white flex justify-center overflow-hidden">
+      <div className="w-[1440px] h-full px-[124px] py-16 flex flex-col">
+        <div className="flex items-center justify-between mb-[48px]">
+          <h2
+            className={`${clashDisplay.className} text-[48px] font-semibold text-[#25324B] leading-[1.1]`}
+          >
+            Latest <span className="text-[#26A4FF]">jobs open</span>
+          </h2>
+
+          <button
+            className={`${epilogue.className} hidden lg:inline-flex items-center gap-2 text-[16px] leading-[1.6] font-semibold text-[#4640DE] hover:opacity-80 transition-opacity`}
+          >
+            Show all jobs
+            <span aria-hidden>→</span>
+          </button>
+        </div>
+
+        <div className="w-[1192px] h-[644px]">
+          {loading ? (
+            <div className="text-center py-20 text-[#7C8493]">
+              Searching for latest opportunities...
+            </div>
+          ) : jobs.length === 0 ? (
+            <div className="text-center py-20 text-[#7C8493]">
+              No jobs found.
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-x-[32px] gap-y-[16px]">
+              {jobs.map((job) => (
+                <article
+                  key={job._id}
+                  style={{ width: "580px", height: "149px" }}
+                  className="flex items-center border border-[#D6DDEB] bg-white pt-[24px] pb-[24px] px-[40px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-all group"
+                >
+                  <div className="mr-[24px] flex-shrink-0 w-12 h-12 bg-gray-50 flex items-center justify-center">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#7C8493"
+                      strokeWidth="2"
+                    >
+                      <rect
+                        x="2"
+                        y="7"
+                        width="20"
+                        height="14"
+                        rx="2"
+                        ry="2"
+                      ></rect>
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                  </div>
+
+                  <div className="flex flex-col gap-[8px] w-[268px]">
+                    <div className="flex flex-col gap-[4px]">
+                      <h3 className="text-[20px] font-bold text-[#25324B] group-hover:text-[#4640DE] transition-colors leading-tight">
+                        {job.title}
+                      </h3>
+                      <p className="text-[16px] text-[#7C8493] font-normal">
+                        {job.company} • {job.location}
+                      </p>
+                    </div>
+
+                    <div className="flex gap-[8px] h-[34px] items-center">
+                      <Tag variant="default">{job.category}</Tag>
+                      <div className="h-6 w-[1px] bg-[#D6DDEB]" />
+                      <Tag variant="outline">Full-Time</Tag>
+                    </div>
+                  </div>
+
+                  <button className="ml-auto w-10 h-10 flex items-center justify-center rounded-full bg-[#F8F8FD] text-[#4640DE] hover:bg-[#4640DE] hover:text-white transition-colors">
+                    <span aria-hidden>→</span>
+                  </button>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
 
         <button
-          className={`${epilogue.className} hidden lg:inline-flex items-center gap-2 text-[16px] leading-[1.6] font-semibold text-[#4640DE] hover:opacity-80 transition-opacity`}
+          className={`${epilogue.className} lg:hidden mt-8 w-full py-4 bg-[#4640DE] text-white font-semibold rounded-[4px]`}
         >
-          Show all jobs
-          <span aria-hidden>→</span>
+          Show all jobs →
         </button>
       </div>
-
-      {/* Jobs Section Container (1192px x 644px) */}
-      <div className="w-[1192px] h-[644px]">
-        {loading ? (
-          <div className="text-center py-20 text-[#7C8493]">
-            Searching for latest opportunities...
-          </div>
-        ) : jobs.length === 0 ? (
-          <div className="text-center py-20 text-[#7C8493]">No jobs found.</div>
-        ) : (
-          /* Grid: 2 Columns, 32px Horizontal Gap */
-          <div className="grid grid-cols-2 gap-x-[32px] gap-y-[16px]">
-            {jobs.map((job) => (
-              <article
-                key={job._id}
-                style={{ width: "580px", height: "149px" }}
-                className="flex items-center border border-[#D6DDEB] bg-white pt-[24px] pb-[24px] px-[40px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-all group"
-              >
-                {/* Left: Placeholder for Logo */}
-                <div className="mr-[24px] flex-shrink-0 w-12 h-12 bg-gray-50 flex items-center justify-center">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#7C8493"
-                    strokeWidth="2"
-                  >
-                    <rect
-                      x="2"
-                      y="7"
-                      width="20"
-                      height="14"
-                      rx="2"
-                      ry="2"
-                    ></rect>
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                  </svg>
-                </div>
-
-                {/* Right: Details (268px wide area) */}
-                <div className="flex flex-col gap-[8px] w-[268px]">
-                  <div className="flex flex-col gap-[4px]">
-                    <h3 className="text-[20px] font-bold text-[#25324B] group-hover:text-[#4640DE] transition-colors leading-tight">
-                      {job.title}
-                    </h3>
-                    <p className="text-[16px] text-[#7C8493] font-normal">
-                      {job.company} • {job.location}
-                    </p>
-                  </div>
-
-                  {/* Tags (268px wide container) */}
-                  <div className="flex gap-[8px] h-[34px] items-center">
-                    <Tag variant="default">{job.category}</Tag>
-                    <div className="h-6 w-[1px] bg-[#D6DDEB]" />
-                    <Tag variant="outline">Full-Time</Tag>
-                  </div>
-                </div>
-
-                {/* Optional Action Button (aligned to right) */}
-                <button className="ml-auto w-10 h-10 flex items-center justify-center rounded-full bg-[#F8F8FD] text-[#4640DE] hover:bg-[#4640DE] hover:text-white transition-colors">
-                  <span aria-hidden>→</span>
-                </button>
-              </article>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Mobile Show all jobs button */}
-      <button
-        className={`${epilogue.className} lg:hidden mt-8 w-full py-4 bg-[#4640DE] text-white font-semibold rounded-[4px]`}
-      >
-        Show all jobs →
-      </button>
     </section>
   );
 }

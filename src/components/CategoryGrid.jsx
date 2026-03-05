@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Epilogue } from "next/font/google";
 import localFont from "next/font/local";
+
 const epilogue = Epilogue({
   subsets: ["latin"],
   weight: ["600"],
@@ -70,9 +71,9 @@ export default function CategoryGrid() {
   };
 
   return (
-    <section className="bg-white py-16">
-      <div className="mx-auto max-w-[1192px] px-6 lg:px-0">
-        <div className="flex items-center justify-between mb-10">
+    <section className="w-full bg-white flex justify-center">
+      <div className="w-[1440px] h-[633px] px-[124px] pt-[72px] flex flex-col gap-[48px] overflow-hidden">
+        <div className="flex items-center justify-between">
           <h2
             className={`${clashDisplay.className} text-[48px] font-semibold text-[#25324B] leading-[1.1]`}
           >
@@ -88,7 +89,7 @@ export default function CategoryGrid() {
             </span>
           </button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px]">
+        <div className="grid grid-cols-4 gap-[32px] w-[1192px]">
           {categories.map((category) => (
             <button
               key={category.name}
