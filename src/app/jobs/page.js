@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 function JobsList() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const search = searchParams.get("search") || "";
   const location = searchParams.get("location") || "";
   const category = searchParams.get("category") || "";
@@ -92,7 +94,10 @@ function JobsList() {
                 </div>
               </div>
 
-              <button className="w-full py-3 rounded-[8px] bg-white border border-[#4640DE] text-[#4640DE] font-semibold hover:bg-[#4640DE] hover:text-white transition-colors">
+              <button
+                onClick={() => router.push(`/jobs/${job._id}`)}
+                className="w-full py-3 rounded-[8px] bg-white border border-[#4640DE] text-[#4640DE] font-semibold hover:bg-[#4640DE] hover:text-white transition-colors cursor-pointer"
+              >
                 Apply Now
               </button>
             </article>
