@@ -15,8 +15,10 @@ export default function Footer() {
     <footer
       className={`${epilogue.className} w-full bg-[#202430] flex justify-center overflow-hidden`}
     >
-      <div className="relative w-[1440px] h-[497px] text-white">
-        <div className="absolute top-[64px] left-[124px] w-[376px] h-[146px] flex flex-col gap-8">
+      {/* Container - Mobile: flex-col py-[40px] px-[16px] | Desktop: block relative h-[497px] */}
+      <div className="relative w-full max-w-[1440px] h-auto md:h-[497px] flex flex-col md:block py-[40px] px-[16px] md:p-0 text-white gap-[32px] md:gap-0">
+        {/* Logo & Description - Mobile: gap-[32px] flex-col | Desktop: absolute top-[64px] left-[124px] */}
+        <div className="w-full md:w-[376px] flex flex-col gap-[32px] md:gap-8 md:absolute md:top-[64px] md:left-[124px]">
           <Link href="/" className="flex items-center gap-2">
             <Image src={logo} alt="QuickHire Logo" width={32} height={32} />
             <span className="text-[24px] font-bold tracking-tight">
@@ -29,8 +31,9 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="absolute top-[64px] left-[588px] w-[295px] h-[241px] flex justify-between">
-          <div className="w-[105px] h-full flex flex-col gap-[18px]">
+        {/* Links Array - Mobile: gap-[96px] flex-row | Desktop: absolute top-[64px] left-[588px] */}
+        <div className="w-full md:w-[295px] flex justify-start md:justify-between gap-[96px] md:gap-0 md:absolute md:top-[64px] md:left-[588px]">
+          <div className="w-[105px] flex flex-col gap-[18px]">
             <h4 className="text-[18px] font-semibold leading-[1.6]">About</h4>
             <ul className="flex flex-col gap-4 text-[#D6DDEB] text-[16px]">
               <li>
@@ -60,7 +63,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div className="w-[105px] h-full flex flex-col gap-[18px]">
+          <div className="w-[105px] flex flex-col gap-[18px]">
             <h4 className="text-[18px] font-semibold leading-[1.6]">
               Resources
             </h4>
@@ -89,35 +92,34 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="absolute top-[64px] left-[954px] w-[362px] space-y-6">
+        {/* Newsletter - Mobile: gap-[16px] flex-col | Desktop: absolute top-[64px] left-[954px] */}
+        <div className="w-full md:w-[362px] flex flex-col gap-[16px] md:gap-6 md:absolute md:top-[64px] md:left-[954px]">
           <h4 className="text-[18px] font-semibold leading-[1.6]">
             Get job notifications
           </h4>
           <p className="text-[16px] leading-[1.6] font-normal text-[#D6DDEB]">
             The latest job news, articles, sent to your inbox weekly.
           </p>
-          <div className="flex gap-2 w-[362px] h-[50px]">
+          <div className="flex flex-col md:flex-row gap-[16px] md:gap-2 w-full md:w-[362px] md:h-[50px]">
             <input
               type="email"
               placeholder="Email Address"
-              className="flex-1 px-4 bg-white text-[#202430] border-none outline-none text-[16px]"
+              className="w-full md:flex-1 h-[50px] md:h-full px-4 bg-white text-[#202430] border-none outline-none text-[16px]"
             />
-            <button className="px-6 bg-[#4640DE] text-white font-semibold text-[16px] hover:opacity-90 transition-opacity">
+            <button className="w-full md:w-auto h-[50px] md:h-full px-6 bg-[#4640DE] text-white font-semibold text-[16px] hover:opacity-90 transition-opacity">
               Subscribe
             </button>
           </div>
         </div>
-
         <div
-          className="absolute top-[385px] left-[124px] w-[1192px] border-t-2 border-white/10"
+          className="w-full md:w-[1192px] border-t-2 border-white/10 my-[8px] md:my-0 md:absolute md:top-[385px] md:left-[124px]"
           aria-hidden="true"
         />
-
-        <div className="absolute top-[425px] left-[124px] w-[1192px] flex justify-between items-center">
+        <div className="w-full md:w-[1192px] flex flex-col md:flex-row justify-between items-start md:items-center gap-[24px] md:gap-0 md:absolute md:top-[425px] md:left-[124px]">
           <p className="text-[16px] font-medium leading-[1.6] text-white/50">
             2021 @ QuickHire. All rights reserved.
           </p>
-          <div className="flex gap-6 w-[256px] justify-end">
+          <div className="flex gap-6 w-full md:w-[256px] justify-start md:justify-end">
             {[1, 2, 3, 4, 5].map((item) => (
               <Link
                 key={item}
