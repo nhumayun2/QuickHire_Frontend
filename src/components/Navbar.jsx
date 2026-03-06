@@ -35,7 +35,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="absolute top-0 left-0 w-full h-[78px] z-50 flex justify-center bg-white border-b border-[#E6E8F0]">
+    <nav className="absolute top-0 left-0 w-full h-[78px] z-50 flex justify-center bg-transparent">
       <div className="w-[1440px] px-[124px] flex items-center justify-between">
         <div className="flex items-center gap-12">
           <Link href="/" className="flex items-center gap-2">
