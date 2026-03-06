@@ -80,7 +80,7 @@ export default function CreateJobPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] flex flex-col">
+    <div className="min-h-screen mt-10 bg-[#F8F9FA] flex flex-col">
       <Navbar />
 
       <main className="flex-grow py-12 px-6 lg:px-12">
