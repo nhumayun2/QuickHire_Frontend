@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Epilogue } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -34,6 +35,7 @@ function Tag({ children, variant = "default" }) {
 export default function LatestJobs() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -52,7 +54,7 @@ export default function LatestJobs() {
   }, []);
 
   return (
-    <section className="relative mb-2 md:mb-0 w-full h-auto md:h-[877px] bg-white flex justify-center overflow-hidden pb-[40px] md:pb-0">
+    <section className="relative w-full h-auto md:h-[877px] bg-white flex justify-center overflow-hidden pb-[40px] md:pb-0">
       <div
         className="absolute inset-0 bg-[#F8F8FD] z-0 hidden md:block"
         style={{
@@ -108,15 +110,17 @@ export default function LatestJobs() {
           <Image src={bottomShape} alt="" fill className="object-contain" />
         </div>
       </div>
+
       <div className="relative z-20 w-full max-w-[1440px] h-full px-[16px] md:px-[124px] py-[40px] md:py-16 flex flex-col">
         <div className="flex items-center justify-between mb-[24px] md:mb-[48px] mt-2 md:mt-10">
           <h2
-            className={`${clashDisplay.className} w-[258px] mb-8 md:mb-0 md:w-auto h-[38px] md:h-auto text-[32px] md:text-[48px] font-semibold text-[#25324B] leading-[1.2] md:leading-[1.1]`}
+            className={`${clashDisplay.className} w-[258px] md:w-auto h-[38px] md:h-auto text-[32px] md:text-[48px] font-semibold text-[#25324B] leading-[1.2] md:leading-[1.1]`}
           >
             Latest <span className="text-[#26A4FF]">jobs open</span>
           </h2>
 
           <button
+            onClick={() => router.push("/jobs")}
             className={`${epilogue.className} hidden lg:inline-flex items-center gap-2 text-[16px] leading-[1.6] font-semibold text-[#4640DE] hover:opacity-80 transition-opacity`}
           >
             Show all jobs
@@ -137,7 +141,8 @@ export default function LatestJobs() {
               {jobs.map((job) => (
                 <article
                   key={job._id}
-                  className="flex flex-col md:flex-row items-start md:items-center justify-between border border-[#D6DDEB] bg-white p-[16px] md:px-[40px] md:py-[24px] w-full md:w-[580px] h-[205px] md:h-[149px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-all group"
+                  onClick={() => router.push(`/jobs/${job._id}`)}
+                  className="cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-between border border-[#D6DDEB] bg-white p-[16px] md:px-[40px] md:py-[24px] w-full md:w-[580px] h-[205px] md:h-[149px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.04)] transition-all group"
                 >
                   <div className="flex items-start md:items-center w-full md:w-auto">
                     <div className="mr-[16px] md:mr-[24px] flex-shrink-0 w-12 h-12 bg-gray-100 flex items-center justify-center">
@@ -189,7 +194,8 @@ export default function LatestJobs() {
         </div>
 
         <button
-          className={`${epilogue.className} lg:hidden mt-6 w-full py-4 text-[#4640DE] font-semibold border border-[#D6DDEB] rounded-[4px]`}
+          onClick={() => router.push("/jobs")}
+          className={`${epilogue.className} lg:hidden mt-6 w-full py-4 text-[#4640DE] font-semibold border border-[#D6DDEB] rounded-[4px] hover:opacity-80 transition-opacity`}
         >
           Show all jobs →
         </button>
