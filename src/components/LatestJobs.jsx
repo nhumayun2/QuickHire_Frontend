@@ -114,7 +114,7 @@ export default function LatestJobs() {
       <div className="relative z-20 w-full max-w-[1440px] h-full px-[16px] md:px-[124px] py-[40px] md:py-16 flex flex-col">
         <div className="flex items-center justify-between mb-[24px] md:mb-[48px] mt-2 md:mt-10">
           <h2
-            className={`${clashDisplay.className} w-[258px] md:w-auto h-[38px] md:h-auto text-[32px] md:text-[48px] font-semibold text-[#25324B] leading-[1.2] md:leading-[1.1]`}
+            className={`${clashDisplay.className} w-[258px] mb-8 md:mb-0 md:w-auto h-[38px] md:h-auto text-[32px] md:text-[48px] font-semibold text-[#25324B] leading-[1.2] md:leading-[1.1]`}
           >
             Latest <span className="text-[#26A4FF]">jobs open</span>
           </h2>

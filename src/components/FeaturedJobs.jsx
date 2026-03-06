@@ -48,7 +48,7 @@ export default function FeaturedJobs() {
       <div className="w-full max-w-[1440px] h-auto md:h-[779px] py-[40px] px-[16px] md:px-[124px] md:pt-[64px] md:pb-[72px] flex flex-col gap-[24px] md:gap-[48px] overflow-hidden">
         <div className="flex items-center justify-between">
           <h2
-            className={`${clashDisplay.className} w-[220px] md:w-auto h-[38px] md:h-auto text-[32px] md:text-[48px] font-semibold text-[#25324B] leading-[1.2] md:leading-[1.1] tracking-[0%]`}
+            className={`${clashDisplay.className} w-[220px] mb-8 md:mb-0 md:w-auto h-[38px] md:h-auto text-[32px] md:text-[48px] font-semibold text-[#25324B] leading-[1.2] md:leading-[1.1] tracking-[0%]`}
           >
             Featured <span className="text-[#26A4FF]">jobs</span>
           </h2>
