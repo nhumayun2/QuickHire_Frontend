@@ -53,7 +53,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen mt-10 bg-white flex flex-col">
       <Navbar />
 
       <main className="flex-grow flex items-center justify-center bg-[#F8F8FD] py-12 px-6">
