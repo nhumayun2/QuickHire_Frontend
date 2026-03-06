@@ -95,7 +95,7 @@ export default function ApplyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen mt-10 bg-white flex flex-col">
       <Navbar />
 
       <main className="flex-grow bg-[#F8F8FD] py-12 border-t border-gray-100">
