@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// Fixed: Link must come from next/link
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
@@ -35,18 +34,26 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="absolute top-0 left-0 w-full h-[78px] z-50 flex justify-center bg-transparent">
-      <div className="w-[1440px] px-[124px] flex items-center justify-between">
+    <nav className="absolute top-0 left-0 w-full z-50 flex justify-center bg-transparent h-[60px] pt-[8px] pb-[16px] px-[16px] md:h-[78px] md:p-0">
+      <div className="w-full max-w-[1440px] md:px-[124px] flex items-center justify-between h-full">
         <div className="flex items-center gap-12">
-          <Link href="/" className="flex items-center gap-2">
-            <Image src={logo} alt="QuickHire Logo" width={32} height={32} />
+          <Link
+            href="/"
+            className="flex items-center gap-2 w-[152px] h-[36px] md:w-auto md:h-auto"
+          >
+            <Image
+              src={logo}
+              alt="QuickHire Logo"
+              width={32}
+              height={32}
+              className="w-[28px] h-[28px] md:w-[32px] md:h-[32px]"
+            />
             <span
-              className={`${redHatDisplay.className} text-2xl font-bold text-[#25324B] tracking-[-0.01em]`}
+              className={`${redHatDisplay.className} text-xl md:text-2xl font-bold text-[#25324B] tracking-[-0.01em]`}
             >
               QuickHire
             </span>
           </Link>
-
           <div className="hidden md:flex items-center gap-8 text-base font-medium text-[#515B6F]">
             <Link
               href="/jobs"
@@ -79,7 +86,6 @@ export default function Navbar() {
             )}
           </div>
         </div>
-
         <div className="hidden md:flex items-center gap-4">
           {mounted &&
             (isLoggedIn ? (
@@ -116,6 +122,22 @@ export default function Navbar() {
               </div>
             ))}
         </div>
+        <button className="md:hidden flex items-center justify-center w-[36px] h-[36px] rounded-[96px] border border-[#D6DDEB] p-[8px]">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#25324B"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </nav>
   );

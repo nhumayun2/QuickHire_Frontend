@@ -28,38 +28,39 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full h-screen bg-[#F8F9FF] flex justify-center overflow-hidden">
-      <div className="absolute top-0 right-0 w-[65%] h-full pointer-events-none z-0">
+    <section className="relative w-full bg-[#F8F9FF] flex justify-center overflow-hidden h-auto pt-[70px] pb-[32px] px-[16px] md:h-screen md:p-0">
+      <div className="absolute top-0 right-0 w-full md:w-[65%] h-full pointer-events-none z-0">
         <Image
           src={herobg}
           alt=""
           fill
-          className="object-contain object-right-top opacity-60"
+          className="object-cover md:object-contain object-right-top opacity-30 md:opacity-60"
         />
       </div>
 
-      <div className="relative z-10 w-[1440px] h-full px-[124px] flex items-center justify-between">
-        <div className="relative z-20 w-[55%]">
+      <div className="relative z-10 w-full max-w-[1440px] h-full flex flex-col md:flex-row items-start md:items-center justify-between md:px-[124px] gap-[23px] md:gap-0">
+        <div className="relative z-20 w-full md:w-[55%] flex flex-col gap-[23px] md:gap-0">
           <h1
-            className={`${clashDisplay.className} text-[72px] font-bold text-[#25324B] leading-[1.1] tracking-[-0.02em]`}
+            className={`${clashDisplay.className} w-[344px] md:w-auto h-[209px] md:h-auto text-[48px] md:text-[72px] font-bold text-[#25324B] leading-[1.1] tracking-[-0.02em]`}
           >
-            Discover <br /> more than <br />
+            Discover <br className="hidden md:block" /> more than <br />
             <span className="relative inline-block text-[#26A4FF]">
               5000+ Jobs
-              <div className="absolute -bottom-4 left-0 w-full">
+              <div className="absolute -bottom-2 md:-bottom-4 left-0 w-full">
                 <Image src={ScratchImage} alt="Scratch" />
               </div>
             </span>
           </h1>
-
-          <p className="mt-8 text-lg text-[#515B6F] max-w-[480px] leading-relaxed font-medium">
+          <p className="w-[344px] h-[87px] md:w-auto md:h-auto md:max-w-[480px] text-base md:text-lg text-[#515B6F] opacity-70 md:opacity-100 leading-[1.6] md:leading-relaxed font-medium md:mt-8">
             Great platform for the job seeker that searching for new career
             heights and passionate about startups.
           </p>
-
-          <div className="relative mt-10 bg-white p-2 rounded-[3px] shadow-[0_24px_80px_rgba(0,0,0,0.08)] border border-[#E6E8F0] w-[830px]">
-            <form onSubmit={handleSearch} className="flex items-center">
-              <div className="flex-1 flex items-center gap-3 px-4 border-r border-[#D6DDEB]">
+          <div className="relative w-[343px] h-[251px] md:w-[830px] md:h-auto bg-white p-4 md:p-2 rounded-[3px] md:rounded-[8px] shadow-[0_24px_80px_rgba(0,0,0,0.08)] border border-[#E6E8F0] md:mt-10">
+            <form
+              onSubmit={handleSearch}
+              className="flex flex-col md:flex-row items-stretch md:items-center h-full gap-[16px] md:gap-0"
+            >
+              <div className="flex-1 flex items-center gap-3 border-b md:border-b-0 md:border-r border-[#D6DDEB] pb-4 md:pb-0 md:px-4">
                 <svg
                   width="24"
                   height="24"
@@ -74,13 +75,13 @@ export default function Hero() {
                 <input
                   type="text"
                   placeholder="Job title or keyword"
-                  className="w-full py-3 focus:outline-none text-[#25324B] placeholder:text-[#A8ADB7] font-medium"
+                  className="w-full py-2 md:py-3 focus:outline-none text-[#25324B] placeholder:text-[#A8ADB7] font-medium"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
 
-              <div className="flex-1 flex items-center gap-3 px-4">
+              <div className="flex-1 flex items-center gap-3 border-b md:border-b-0 border-[#D6DDEB] pb-4 md:pb-0 md:px-4">
                 <svg
                   width="24"
                   height="24"
@@ -95,7 +96,7 @@ export default function Hero() {
                 <input
                   type="text"
                   placeholder="Any Location"
-                  className="w-full py-3 focus:outline-none text-[#25324B] placeholder:text-[#A8ADB7] font-medium"
+                  className="w-full py-2 md:py-3 focus:outline-none text-[#25324B] placeholder:text-[#A8ADB7] font-medium"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                 />
@@ -103,22 +104,20 @@ export default function Hero() {
 
               <button
                 type="submit"
-                className="px-10 py-4 bg-[#4640DE] text-white font-bold rounded-[8px] hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="w-full md:w-auto px-10 py-4 bg-[#4640DE] text-white font-bold rounded-[8px] hover:opacity-90 transition-opacity whitespace-nowrap mt-auto md:mt-0"
               >
                 Search my job
               </button>
             </form>
           </div>
-
-          <div className="mt-6 text-sm">
+          <div className="mt-6 text-sm text-left">
             <span className="text-[#7C8493] font-medium">Popular : </span>
             <span className="text-[#25324B] font-bold">
               UI Designer, UX Researcher, Android, Admin
             </span>
           </div>
         </div>
-
-        <div className="absolute right-0 bottom-0 w-[50%] h-full flex items-end justify-end z-10 pointer-events-none">
+        <div className="hidden md:flex absolute right-0 bottom-0 w-[50%] h-full items-end justify-end z-10 pointer-events-none">
           <div className="relative w-full h-[95%]">
             <Image
               src={HeroPerson}
