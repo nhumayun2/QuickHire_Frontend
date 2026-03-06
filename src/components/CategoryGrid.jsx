@@ -94,44 +94,63 @@ export default function CategoryGrid() {
             <button
               key={category.name}
               onClick={() => handleCategoryClick(category.name)}
-              className={`flex flex-row md:flex-col items-center md:items-start border p-[16px] md:p-[32px] gap-[32px] md:gap-0 w-full md:w-[274px] h-[84px] md:h-[214px] text-left transition-all hover:-translate-y-1 ${
+              className={`flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start border p-[16px] md:p-[32px] w-full md:w-[274px] h-[84px] md:h-[214px] text-left transition-all hover:-translate-y-1 ${
                 category.active
                   ? "bg-[#4640DE] text-white border-transparent shadow-[0_24px_80px_rgba(70,64,222,0.30)]"
                   : "bg-white text-[#25324B] border-[#D6DDEB] hover:border-[#4640DE]"
               }`}
             >
-              <div className="md:mb-6 flex-shrink-0 flex items-center justify-center">
-                <Image
-                  src={category.icon}
-                  alt={category.name}
-                  width={48}
-                  height={48}
-                  className={`w-[40px] h-[40px] md:w-[48px] md:h-[48px] ${category.active ? "brightness-0 invert" : ""}`}
-                />
+              <div className="flex items-center gap-[16px] md:gap-0 md:flex-col md:items-start">
+                <div className="md:mb-6 flex-shrink-0 flex items-center justify-center">
+                  <Image
+                    src={category.icon}
+                    alt={category.name}
+                    width={48}
+                    height={48}
+                    className={`w-[40px] h-[40px] md:w-[48px] md:h-[48px] ${category.active ? "brightness-0 invert" : ""}`}
+                  />
+                </div>
+
+                <div className="mt-0 md:mt-auto flex flex-col justify-center">
+                  <p className="text-[18px] md:text-[20px] font-bold leading-tight md:mb-1">
+                    {category.name}
+                  </p>
+                  <div className="flex items-center gap-2 mt-1 md:mt-0">
+                    <p
+                      className={`text-[14px] md:text-[16px] ${category.active ? "text-white/80" : "text-[#7C8493]"}`}
+                    >
+                      {category.count}
+                    </p>
+                    <span
+                      className={`hidden md:inline ${category.active ? "text-white" : "text-[#25324B]"}`}
+                      aria-hidden
+                    >
+                      →
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-0 md:mt-auto flex flex-col justify-center">
-                <p className="text-[18px] md:text-[20px] font-bold leading-tight md:mb-1">
-                  {category.name}
-                </p>
-                <div className="flex items-center gap-2 mt-1 md:mt-0">
-                  <p
-                    className={`text-[14px] md:text-[16px] ${category.active ? "text-white/80" : "text-[#7C8493]"}`}
-                  >
-                    {category.count}
-                  </p>
-                  <span
-                    className={`hidden md:inline ${category.active ? "text-white" : "text-[#25324B]"}`}
-                    aria-hidden
-                  >
-                    →
-                  </span>
-                </div>
+              <div
+                className={`md:hidden flex items-center justify-center ${category.active ? "text-white" : "text-[#25324B]"}`}
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
               </div>
             </button>
           ))}
         </div>
-
         <button
           onClick={handleShowAll}
           className={`${epilogue.className} lg:hidden flex items-center justify-center gap-[16px] w-[144px] h-[26px] mx-auto mt-2 text-[#4640DE] font-semibold text-[16px] hover:opacity-80 transition-opacity`}
