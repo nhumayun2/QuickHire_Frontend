@@ -22,7 +22,16 @@ export default function AdminJobs() {
 
   const fetchJobs = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs`);
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/jobs/admin/myjobs`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
       if (!response.ok) throw new Error("Failed to fetch jobs");
 
       const data = await response.json();
@@ -68,8 +77,7 @@ export default function AdminJobs() {
   return (
     <div className="min-h-screen bg-[#F8F9FA] flex flex-col">
       <Navbar />
-
-      <main className="flex-grow py-12 px-6 lg:px-12">
+      <main className="flex-grow pt-[100px] pb-12 px-6 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
           <div className="flex gap-4 mb-8 border-b border-[#E6E8F0] pb-4">
             <Link
@@ -92,7 +100,7 @@ export default function AdminJobs() {
                 Manage Jobs
               </h1>
               <p className="text-[#515B6F] mt-1">
-                View, manage, and remove active job postings.
+                View, manage, and remove your active job postings.
               </p>
             </div>
 
