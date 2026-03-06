@@ -72,10 +72,10 @@ export default function CategoryGrid() {
 
   return (
     <section className="w-full bg-white flex justify-center">
-      <div className="w-[1440px] h-[633px] px-[124px] pt-[72px] flex flex-col gap-[48px] overflow-hidden">
+      <div className="w-full max-w-[1440px] h-auto md:h-[633px] px-[16px] pb-[40px] md:px-[124px] md:pt-[72px] md:pb-0 flex flex-col gap-[24px] md:gap-[48px] overflow-hidden">
         <div className="flex items-center justify-between">
           <h2
-            className={`${clashDisplay.className} text-[48px] font-semibold text-[#25324B] leading-[1.1]`}
+            className={`${clashDisplay.className} w-[323px] md:w-auto h-auto md:h-[38px] text-[32px] md:text-[48px] font-semibold text-[#25324B] leading-[1.2] md:leading-[1.1]`}
           >
             Explore by <span className="text-[#26A4FF]">category</span>
           </h2>
@@ -89,40 +89,39 @@ export default function CategoryGrid() {
             </span>
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-[32px] w-[1192px]">
+        <div className="flex flex-col md:grid md:grid-cols-4 gap-[16px] md:gap-[32px] w-full md:w-[1192px]">
           {categories.map((category) => (
             <button
               key={category.name}
               onClick={() => handleCategoryClick(category.name)}
-              style={{ width: "274px", height: "214px" }}
-              className={`flex flex-col items-start border p-[32px] text-left transition-all hover:-translate-y-1 ${
+              className={`flex flex-row md:flex-col items-center md:items-start border p-[16px] md:p-[32px] gap-[32px] md:gap-0 w-full md:w-[274px] h-[84px] md:h-[214px] text-left transition-all hover:-translate-y-1 ${
                 category.active
                   ? "bg-[#4640DE] text-white border-transparent shadow-[0_24px_80px_rgba(70,64,222,0.30)]"
                   : "bg-white text-[#25324B] border-[#D6DDEB] hover:border-[#4640DE]"
               }`}
             >
-              <div className="mb-6">
+              <div className="md:mb-6 flex-shrink-0 flex items-center justify-center">
                 <Image
                   src={category.icon}
                   alt={category.name}
                   width={48}
                   height={48}
-                  className={category.active ? "brightness-0 invert" : ""}
+                  className={`w-[40px] h-[40px] md:w-[48px] md:h-[48px] ${category.active ? "brightness-0 invert" : ""}`}
                 />
               </div>
 
-              <div className="mt-auto">
-                <p className="text-[20px] font-bold mb-1">{category.name}</p>
-                <div className="flex items-center gap-2">
+              <div className="mt-0 md:mt-auto flex flex-col justify-center">
+                <p className="text-[18px] md:text-[20px] font-bold leading-tight md:mb-1">
+                  {category.name}
+                </p>
+                <div className="flex items-center gap-2 mt-1 md:mt-0">
                   <p
-                    className={`text-[16px] ${category.active ? "text-white/80" : "text-[#7C8493]"}`}
+                    className={`text-[14px] md:text-[16px] ${category.active ? "text-white/80" : "text-[#7C8493]"}`}
                   >
                     {category.count}
                   </p>
                   <span
-                    className={
-                      category.active ? "text-white" : "text-[#25324B]"
-                    }
+                    className={`hidden md:inline ${category.active ? "text-white" : "text-[#25324B]"}`}
                     aria-hidden
                   >
                     →
@@ -132,14 +131,13 @@ export default function CategoryGrid() {
             </button>
           ))}
         </div>
+
         <button
           onClick={handleShowAll}
-          className={`${epilogue.className} mt-8 w-full inline-flex items-center justify-center py-4 bg-[#4640DE] text-white text-[16px] font-semibold lg:hidden`}
+          className={`${epilogue.className} lg:hidden flex items-center justify-center gap-[16px] w-[144px] h-[26px] mx-auto mt-2 text-[#4640DE] font-semibold text-[16px] hover:opacity-80 transition-opacity`}
         >
           Show all jobs
-          <span className="ml-2" aria-hidden>
-            →
-          </span>
+          <span aria-hidden>→</span>
         </button>
       </div>
     </section>
