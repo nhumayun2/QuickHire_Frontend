@@ -43,10 +43,10 @@ export default function FeaturedJobs() {
 
   return (
     <section className="w-full bg-white flex justify-center">
-      <div className="w-[1440px] h-[779px] px-[124px] pb-[72px] flex flex-col gap-[48px] overflow-hidden">
-        <div className="flex items-center justify-between pt-16">
+      <div className="w-full max-w-[1440px] h-auto md:h-[779px] py-[40px] px-[16px] md:px-[124px] md:pt-[64px] md:pb-[72px] flex flex-col gap-[24px] md:gap-[48px] overflow-hidden">
+        <div className="flex items-center justify-between">
           <h2
-            className={`${clashDisplay.className} text-[48px] font-semibold text-[#25324B] leading-[1.1] tracking-[0%]`}
+            className={`${clashDisplay.className} w-[220px] md:w-auto h-[38px] md:h-auto text-[32px] md:text-[48px] font-semibold text-[#25324B] leading-[1.2] md:leading-[1.1] tracking-[0%]`}
           >
             Featured <span className="text-[#26A4FF]">jobs</span>
           </h2>
@@ -59,7 +59,7 @@ export default function FeaturedJobs() {
           </button>
         </div>
 
-        <div className="w-[1192px] h-[606px]">
+        <div className="w-full mt-4 mb-2 md:w-[1192px] h-auto md:h-[606px]">
           {loading ? (
             <div className="text-center py-20 text-[#7C8493]">
               Loading jobs...
@@ -69,15 +69,14 @@ export default function FeaturedJobs() {
               No jobs available.
             </div>
           ) : (
-            <div className="grid grid-cols-4 gap-[32px]">
+            <div className="flex md:grid md:grid-cols-4 gap-[16px] md:gap-[32px] overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0">
               {jobs.map((job) => (
                 <article
                   key={job._id}
-                  style={{ width: "274px", height: "283px" }}
-                  className="border border-[#D6DDEB] p-[24px] bg-white flex flex-col justify-between hover:shadow-[0_24px_80px_rgba(0,0,0,0.05)] transition-all group"
+                  className="w-[286px] md:w-[274px] h-[283px] flex-shrink-0 snap-start border border-[#D6DDEB] p-[24px] bg-white flex flex-col justify-between hover:shadow-[0_24px_80px_rgba(0,0,0,0.05)] transition-all group"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 bg-gray-100 flex items-center justify-center rounded-sm">
+                    <div className="w-12 h-12 bg-gray-100 flex items-center justify-center rounded-sm flex-shrink-0">
                       <svg
                         width="24"
                         height="24"
@@ -100,19 +99,16 @@ export default function FeaturedJobs() {
                     <Badge>Full Time</Badge>
                   </div>
                   <div className="flex flex-col gap-[16px]">
-                    <h3 className="text-[18px] font-bold text-[#25324B] group-hover:text-[#4640DE] transition-colors leading-tight">
+                    <h3 className="text-[18px] font-bold text-[#25324B] group-hover:text-[#4640DE] transition-colors leading-tight line-clamp-2">
                       {job.title}
                     </h3>
-                    <p className="text-[16px] text-[#7C8493] font-medium">
+                    <p className="text-[16px] text-[#7C8493] font-medium line-clamp-1">
                       {job.company} • {job.location}
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="px-3 py-1 bg-[#56CDAD]/10 text-[#56CDAD] rounded-full text-[12px] font-bold">
+                  <div className="flex flex-wrap gap-2 pt-2 overflow-hidden h-[34px]">
+                    <span className="px-3 py-1 bg-[#56CDAD]/10 text-[#56CDAD] rounded-full text-[12px] font-bold whitespace-nowrap">
                       {job.category}
-                    </span>
-                    <span className="px-3 py-1 bg-[#FFB836]/10 text-[#FFB836] rounded-full text-[12px] font-bold">
-                      Marketing
                     </span>
                   </div>
                 </article>
@@ -120,12 +116,23 @@ export default function FeaturedJobs() {
             </div>
           )}
         </div>
+
         <button
-          className={`${epilogue.className} lg:hidden w-full py-4 text-[#4640DE] font-semibold border border-[#D6DDEB] rounded-[4px]`}
+          className={`${epilogue.className} lg:hidden flex items-center justify-center gap-[16px] w-[144px] h-[26px] mx-auto mt-2 text-[#4640DE] font-semibold text-[16px] hover:opacity-80 transition-opacity`}
         >
-          Show all jobs →
+          Show all jobs
+          <span aria-hidden>→</span>
         </button>
       </div>
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }
